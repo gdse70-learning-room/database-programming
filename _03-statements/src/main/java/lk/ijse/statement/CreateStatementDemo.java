@@ -73,6 +73,41 @@ public class CreateStatementDemo {
         }
     }
 
+    private static void deleteCustomer(String id) throws SQLException {
+
+        String sql = "DELETE FROM customers WHERE id = " + id;
+
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/kade",
+                "root",
+                "Ijse@1234"
+        )) {
+            Statement statement = connection.createStatement();
+            boolean isDeleted = statement.executeUpdate(sql) > 0;
+
+            if(isDeleted)
+                System.out.println("customer deleted!");
+            else
+                System.out.println("customer not deleted!");
+        }
+    }
+
+    private static void updateCustomer(String id) throws SQLException {
+
+        String sql = "UPDATE customers SET name = 'Shehara', address = 'USA', tel = '0786545675' WHERE id = " + id;
+
+        try (Connection connection = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/kade",
+                "root",
+                "Ijse@1234"
+        )) {
+            Statement statement = connection.createStatement();
+            boolean isUpdated = statement.executeUpdate(sql) > 0;
+
+            System.out.println(isUpdated ? "customer updated!" : "customer not updated");
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
 //        saveCustomer();
 
@@ -80,8 +115,8 @@ public class CreateStatementDemo {
 
 //        searchCustomerById("'C0010'");
 
-//        deleteCustomer();
+//        deleteCustomer("'C008'");
 
-//        updateCustomer();
+        updateCustomer("'C007'");
     }
 }
