@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="442.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.supermarket.controller.DashboardFormController">
+    <children>
+        <AnchorPane layoutX="37.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #55efc4;">
+            <children>
+                <Label layoutX="32.0" layoutY="46.0" text="Customer Count" textFill="#cd6b6b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="90.0" layoutY="91.0" text="15" textFill="#cd6b6b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="285.0" layoutY="48.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #74b9ff;">
+            <children>
+                <Label layoutX="56.0" layoutY="52.0" text="Item Count" textFill="#cd6b6b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+                <Label layoutX="90.0" layoutY="91.0" text="65" textFill="#cd6b6b">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+        <TableView layoutX="37.0" layoutY="261.0" prefHeight="136.0" prefWidth="450.0">
+            <columns>
+                <TableColumn prefWidth="230.0" text="Id" />
+                <TableColumn prefWidth="219.0" text="Details" />
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
