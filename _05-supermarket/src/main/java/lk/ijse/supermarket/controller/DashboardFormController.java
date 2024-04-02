@@ -50,22 +50,22 @@ public class DashboardFormController {
 
     @FXML
     void btnCustomerOnAction(ActionEvent event) throws IOException {
-        /*AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/customer_form.fxml"));
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/customer_form.fxml"));
         Stage stage = (Stage) rootNode.getScene().getWindow();
 
         stage.setScene(new Scene(anchorPane));
         stage.setTitle("Customer Form");
-        stage.centerOnScreen();*/
+        stage.centerOnScreen();
     }
 
     @FXML
     void btnItemOnAction(ActionEvent event) throws IOException {
-        /*AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/item_form.fxml"));
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/item_form.fxml"));
         Stage stage = (Stage) rootNode.getScene().getWindow();
 
         stage.setScene(new Scene(anchorPane));
         stage.setTitle("Item Form");
-        stage.centerOnScreen();*/
+        stage.centerOnScreen();
     }
 
     @FXML
