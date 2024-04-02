@@ -1,5 +1,7 @@
 package lk.ijse.supermarket.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,13 +10,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.supermarket.model.Customer;
+import lk.ijse.supermarket.model.tm.CustomerTm;
 import lk.ijse.supermarket.repository.CustomerRepo;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerFormController {
     @FXML
@@ -30,10 +36,11 @@ public class CustomerFormController {
     private TableColumn<?, ?> colTel;
 
     @FXML
-    private AnchorPane root;
+    private TableView<CustomerTm> tblCustomer;
 
     @FXML
-    private TableView<?> tblCustomer;
+    private AnchorPane root;
+
 
     @FXML
     private TextField txtAddress;
@@ -46,6 +53,48 @@ public class CustomerFormController {
 
     @FXML
     private TextField txtTel;
+
+    private List<Customer> customerList = new ArrayList<>();
+
+    public void initialize() {
+        try {
+            customerList = getAllCustomers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        setCellValueFactory();
+        loadCustomerTable();
+    }
+
+    private void setCellValueFactory() {
+        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colTel.setCellValueFactory(new PropertyValueFactory<>("tel"));
+    }
+
+    private void loadCustomerTable() {
+        ObservableList<CustomerTm> tmList = FXCollections.observableArrayList();
+
+        for (Customer customer : customerList) {
+            CustomerTm customerTm = new CustomerTm(
+                    customer.getId(),
+                    customer.getName(),
+                    customer.getAddress(),
+                    customer.getTel()
+            );
+
+            tmList.add(customerTm);
+        }
+        tblCustomer.setItems(tmList);
+    }
+
+    private List<Customer> getAllCustomers() throws SQLException {
+        List<Customer> customerList = CustomerRepo.getAll();
+
+        return customerList;
+    }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {

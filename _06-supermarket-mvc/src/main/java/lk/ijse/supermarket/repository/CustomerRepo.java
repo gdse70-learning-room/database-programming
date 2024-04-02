@@ -6,6 +6,8 @@ import lk.ijse.supermarket.model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerRepo {
     public static boolean save(Customer customer) throws SQLException {
@@ -72,5 +74,26 @@ public class CustomerRepo {
         pstm.setObject(1, id);
 
         return pstm.executeUpdate() > 0;
+    }
+
+    public static List<Customer> getAll() throws SQLException {
+        String sql = "SELECT * FROM customers";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+
+        ResultSet resultSet = pstm.executeQuery();
+
+        List<Customer> customersList = new ArrayList<>();
+        while (resultSet.next()) {
+            String id = resultSet.getString(1);
+            String name = resultSet.getString(2);
+            String address = resultSet.getString(3);
+            String tel = resultSet.getString(4);
+
+            Customer customer = new Customer(id, name, address, tel);
+            customersList.add(customer);
+        }
+        return customersList;
     }
 }
