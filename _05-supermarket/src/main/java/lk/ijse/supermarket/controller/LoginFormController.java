@@ -32,7 +32,7 @@ public class LoginFormController {
         }
     }
 
-    private void checkCredential(String userId, String pw) throws SQLException {
+    private void checkCredential(String userId, String pw) throws SQLException, IOException {
         String sql = "SELECT user_id, password FROM users WHERE user_id = ?";
 
         Connection connection = DbConnection.getInstance().getConnection();
@@ -44,13 +44,24 @@ public class LoginFormController {
             String dbPw = resultSet.getString(2);
 
             if(dbPw.equals(pw)) {
-                System.out.println("Navigate to the dashboard");
+                navigateToTheDashboard();
             } else {
                 new Alert(Alert.AlertType.ERROR, "Password is incorrect!").show();
             }
         } else {
             new Alert(Alert.AlertType.INFORMATION, "user id not found!").show();
         }
+    }
+
+    private void navigateToTheDashboard() throws IOException {
+        AnchorPane rootNode = FXMLLoader.load(this.getClass().getResource("/view/dashboard_form.fxml"));
+
+        Scene scene = new Scene(rootNode);
+
+        Stage stage = (Stage) this.rootNode.getScene().getWindow();
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setTitle("Dashboard Form");
     }
 
     public void linkRegistrationOnAction(ActionEvent actionEvent) throws IOException {
