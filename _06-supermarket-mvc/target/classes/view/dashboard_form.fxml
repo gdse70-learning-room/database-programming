@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootNode" prefHeight="419.0" prefWidth="530.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.supermarket.controller.DashboardFormController">
+    <children>
+        <AnchorPane layoutX="19.0" layoutY="37.0" prefHeight="99.0" prefWidth="243.0" style="-fx-background-color: #bdc3c7;">
+            <children>
+                <Label layoutX="53.0" layoutY="14.0" text="Customer Count">
+                    <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblCustomerCount" layoutX="99.0" layoutY="50.0" text="15" textFill="#030000">
+                    <font>
+                        <Font name="System Bold" size="32.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+      <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="39.0" layoutY="206.0" onAction="#btnCustomerOnAction" prefHeight="112.0" prefWidth="128.0" style="-fx-background-color: #2ecc71;" text="Customer" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="63.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icon/customer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="205.0" layoutY="206.0" onAction="#btnItemOnAction" prefHeight="112.0" prefWidth="128.0" style="-fx-background-color: #e67e22;" text="Item" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="63.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icon/item.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton buttonType="RAISED" contentDisplay="TOP" layoutX="368.0" layoutY="206.0" onAction="#btnPlaceOrderOnAction" prefHeight="112.0" prefWidth="128.0" style="-fx-background-color: #e74c3c;" text="Place Order" textFill="WHITE">
+         <graphic>
+            <ImageView fitHeight="63.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icon/place_order.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </JFXButton>
+      <AnchorPane layoutX="271.0" layoutY="37.0" prefHeight="99.0" prefWidth="243.0" style="-fx-background-color: #bdc3c7;">
+         <children>
+            <Label layoutX="72.0" layoutY="14.0" text="Item Count">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="99.0" layoutY="50.0" text="56" textFill="#030000">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXButton buttonType="RAISED" layoutX="438.0" layoutY="371.0" onAction="#btnExitOnAction" style="-fx-background-color: #fab1a0;" text="Exit" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <graphic>
+            <ImageView fitHeight="26.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../asserts/icon/exit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </JFXButton>
+    </children>
+</AnchorPane>

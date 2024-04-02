@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/_03-statements/pom.xml" />
         <option value="$PROJECT_DIR$/_04-design-patterns/pom.xml" />
         <option value="$PROJECT_DIR$/_05-supermarket/pom.xml" />
+        <option value="$PROJECT_DIR$/_06-supermarket-mvc/pom.xml" />
       </list>
     </option>
   </component>

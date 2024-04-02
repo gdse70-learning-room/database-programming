@@ -9,6 +9,7 @@
         <module name="dbp" />
         <module name="_03-statements" />
         <module name="_05-supermarket" />
+        <module name="_06-supermarket-mvc" />
         <module name="_04-design-patterns" />
       </profile>
     </annotationProcessing>
