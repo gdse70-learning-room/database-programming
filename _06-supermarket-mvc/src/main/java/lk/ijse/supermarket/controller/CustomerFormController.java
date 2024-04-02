@@ -57,12 +57,7 @@ public class CustomerFormController {
     private List<Customer> customerList = new ArrayList<>();
 
     public void initialize() {
-        try {
-            customerList = getAllCustomers();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
+        this.customerList = getAllCustomers();
         setCellValueFactory();
         loadCustomerTable();
     }
@@ -90,9 +85,13 @@ public class CustomerFormController {
         tblCustomer.setItems(tmList);
     }
 
-    private List<Customer> getAllCustomers() throws SQLException {
-        List<Customer> customerList = CustomerRepo.getAll();
-
+    private List<Customer> getAllCustomers() {
+        List<Customer> customerList = null;
+        try {
+            customerList = CustomerRepo.getAll();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return customerList;
     }
 
