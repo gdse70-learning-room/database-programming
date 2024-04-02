@@ -1,6 +1,5 @@
 package lk.ijse.supermarket.repository;
 
-import javafx.scene.control.Alert;
 import lk.ijse.supermarket.db.DbConnection;
 import lk.ijse.supermarket.model.Customer;
 

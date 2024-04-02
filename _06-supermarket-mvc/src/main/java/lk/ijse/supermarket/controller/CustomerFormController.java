@@ -10,14 +10,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.supermarket.db.DbConnection;
 import lk.ijse.supermarket.model.Customer;
 import lk.ijse.supermarket.repository.CustomerRepo;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustomerFormController {
