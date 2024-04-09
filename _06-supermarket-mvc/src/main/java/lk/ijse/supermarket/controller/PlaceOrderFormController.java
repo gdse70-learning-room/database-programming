@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -173,6 +170,20 @@ public class PlaceOrderFormController {
         double unitPrice = Double.parseDouble(lblUnitPrice.getText());
         double total = qty * unitPrice;
         JFXButton btnRemove = new JFXButton("remove");
+
+        for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
+            if(code.equals(colItemCode.getCellData(i))) {
+                qty += cartList.get(i).getQty();
+                total = unitPrice * qty;
+
+                cartList.get(i).setQty(qty);
+                cartList.get(i).setTotal(total);
+
+                tblOrderCart.refresh();
+                return;
+            }
+        }
+
 
         CartTm cartTm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
 
