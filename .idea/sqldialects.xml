@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/_01-jdbc-bootstrapping1/src/lk/ijse/dbp/sql/query.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/_06-supermarket-mvc/src/main/resources/query.sql" dialect="MySQL" />
   </component>
 </project>
