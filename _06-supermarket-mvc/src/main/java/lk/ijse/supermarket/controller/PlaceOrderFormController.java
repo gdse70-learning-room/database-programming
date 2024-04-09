@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 public class PlaceOrderFormController {
 
@@ -73,6 +74,15 @@ public class PlaceOrderFormController {
 
     @FXML
     private TextField txtQty;
+
+    public void initialize() {
+        setDate();
+    }
+
+    private void setDate() {
+        LocalDate now = LocalDate.now();
+        System.out.println("now = " + now);
+    }
 
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
