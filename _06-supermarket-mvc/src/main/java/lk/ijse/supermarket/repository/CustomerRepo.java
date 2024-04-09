@@ -3,6 +3,7 @@ package lk.ijse.supermarket.repository;
 import lk.ijse.supermarket.db.DbConnection;
 import lk.ijse.supermarket.model.Customer;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -95,5 +96,19 @@ public class CustomerRepo {
             customersList.add(customer);
         }
         return customersList;
+    }
+
+    public static List<String> getIds() throws SQLException {
+        String sql = "SELECT id FROM customers";
+
+        Connection connection = DbConnection.getInstance().getConnection();
+        ResultSet resultSet = connection.prepareStatement(sql).executeQuery();
+
+        List<String> idList = new ArrayList<>();
+
+        while (resultSet.next()) {
+            idList.add(resultSet.getString(1));
+        }
+        return idList;
     }
 }
