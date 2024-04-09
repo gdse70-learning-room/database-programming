@@ -52,7 +52,7 @@ public class PlaceOrderFormController {
     private TableColumn<?, ?> colTotal;
 
     @FXML
-    private TableColumn<?, ?> colUnitPrice;
+    private TableColumn colUnitPrice;
 
     @FXML
     private Label lblCustomerName;
@@ -85,6 +85,8 @@ public class PlaceOrderFormController {
     private TextField txtQty;
 
     private ObservableList<CartTm> cartList = FXCollections.observableArrayList();
+    private double netTotal = 0;
+
     public void initialize() {
         setCellValueFactory();
         loadNextOrderId();
@@ -106,7 +108,7 @@ public class PlaceOrderFormController {
         ObservableList<String> obList = FXCollections.observableArrayList();
         try {
             List<String> codeList = ItemRepo.getCodes();
-            for(String code : codeList) {
+            for (String code : codeList) {
                 obList.add(code);
             }
 
@@ -147,7 +149,7 @@ public class PlaceOrderFormController {
     }
 
     private String nextId(String currentId) {
-        if(currentId != null) {
+        if (currentId != null) {
             String[] split = currentId.split("O");
 //            System.out.println("Arrays.toString(split) = " + Arrays.toString(split));
             int id = Integer.parseInt(split[1]);    //2
@@ -172,7 +174,7 @@ public class PlaceOrderFormController {
         JFXButton btnRemove = new JFXButton("remove");
 
         for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
-            if(code.equals(colItemCode.getCellData(i))) {
+            if (code.equals(colItemCode.getCellData(i))) {
                 qty += cartList.get(i).getQty();
                 total = unitPrice * qty;
 
@@ -180,17 +182,27 @@ public class PlaceOrderFormController {
                 cartList.get(i).setTotal(total);
 
                 tblOrderCart.refresh();
+                calculateNetTotal();
+                txtQty.setText("");
                 return;
             }
         }
-
 
         CartTm cartTm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
 
         cartList.add(cartTm);
 
         tblOrderCart.setItems(cartList);
+        txtQty.setText("");
+        calculateNetTotal();
+    }
 
+    private void calculateNetTotal() {
+        netTotal = 0;
+        for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
+            netTotal += (double) colTotal.getCellData(i);
+        }
+        lblNetTotal.setText(String.valueOf(netTotal));
     }
 
     @FXML
@@ -232,7 +244,7 @@ public class PlaceOrderFormController {
         String code = cmbItemCode.getValue();
         try {
             Item item = ItemRepo.searchByCode(code);
-            if(item != null) {
+            if (item != null) {
                 lblDescription.setText(item.getDescription());
                 lblUnitPrice.setText(String.valueOf(item.getUnitPrice()));
                 lblQtyOnHand.setText(String.valueOf(item.getQtyOnHand()));
@@ -240,10 +252,13 @@ public class PlaceOrderFormController {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        txtQty.requestFocus();
     }
 
     @FXML
     void txtQtyOnAction(ActionEvent event) {
+        btnAddToCartOnAction(event);
 
     }
 
