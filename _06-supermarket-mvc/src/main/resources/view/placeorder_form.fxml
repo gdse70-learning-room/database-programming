@@ -111,7 +111,7 @@
             <graphic>
                 <ImageView fitHeight="16.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icon/cart.png" />
+                        <Image url="@../asserts/icon/cart(2).png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -123,7 +123,7 @@
             <graphic>
                 <ImageView fitHeight="28.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icon/make_order.png" />
+                        <Image url="@../asserts/icon/make_order.png" />
                     </image>
                 </ImageView>
             </graphic>
@@ -135,7 +135,7 @@
             <graphic>
                 <ImageView fitHeight="17.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../icon/new.png" />
+                        <Image url="@../asserts/icon/new.png" />
                     </image>
                 </ImageView>
             </graphic>
