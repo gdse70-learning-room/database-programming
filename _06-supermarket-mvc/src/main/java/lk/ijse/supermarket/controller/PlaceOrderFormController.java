@@ -14,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.supermarket.model.Customer;
 import lk.ijse.supermarket.repository.CustomerRepo;
 import lk.ijse.supermarket.repository.OrderRepo;
 
@@ -161,7 +162,15 @@ public class PlaceOrderFormController {
     @FXML
     void cmbCustomerOnAction(ActionEvent event) {
         String cusId = cmbCustomerId.getValue();
-        System.out.println("cusId = " + cusId);
+
+        try {
+            Customer customer = CustomerRepo.searchById(cusId);
+
+            lblCustomerName.setText(customer.getName());
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
