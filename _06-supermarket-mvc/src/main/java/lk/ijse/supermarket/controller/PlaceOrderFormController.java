@@ -76,12 +76,17 @@ public class PlaceOrderFormController {
     private TextField txtQty;
 
     public void initialize() {
+        loadNextOrderId();
         setDate();
+    }
+
+    private void loadNextOrderId() {
+
     }
 
     private void setDate() {
         LocalDate now = LocalDate.now();
-        System.out.println("now = " + now);
+        lblOrderDate.setText(String.valueOf(now));
     }
 
     @FXML

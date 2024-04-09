@@ -14,7 +14,7 @@ create table orders(
                        order_id varchar(35) primary key,
                        cus_id varchar(35) not null,
                        date date not null,
-                       constraint foreign key (cus_id) references customer(id)
+                       constraint foreign key (cus_id) references customers(id)
                            on delete cascade on update cascade
 );
 
@@ -35,3 +35,6 @@ create table order_detail(
                              constraint foreign key (item_code) references items(code)
                                  on delete cascade on update cascade
 );
+
+INSERT INTO orders VALUES ('O1', 'C001', '2024-04-19');
+INSERT INTO orders VALUES ('O2', 'C001', '2024-04-20');
