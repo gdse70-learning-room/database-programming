@@ -25,4 +25,23 @@ public class ItemRepo {
         }
         return codeList;
     }
+
+    public static Item searchByCode(String code) throws SQLException {
+        String sql = "SELECT * FROM items WHERE code = ?";
+
+        PreparedStatement pstm = DbConnection.getInstance().getConnection()
+                .prepareStatement(sql);
+        pstm.setObject(1, code);
+
+        ResultSet resultSet = pstm.executeQuery();
+        if(resultSet.next()) {
+            return new Item(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getDouble(3),
+                    resultSet.getInt(4)
+            );
+        }
+        return null;
+    }
 }

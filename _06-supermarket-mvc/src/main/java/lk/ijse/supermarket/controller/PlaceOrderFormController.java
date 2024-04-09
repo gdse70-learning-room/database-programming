@@ -12,10 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.supermarket.model.Customer;
 import lk.ijse.supermarket.model.Item;
+import lk.ijse.supermarket.model.tm.CartTm;
 import lk.ijse.supermarket.repository.CustomerRepo;
 import lk.ijse.supermarket.repository.ItemRepo;
 import lk.ijse.supermarket.repository.OrderRepo;
@@ -80,16 +82,27 @@ public class PlaceOrderFormController {
     private AnchorPane pane;
 
     @FXML
-    private TableView<?> tblOrderCart;
+    private TableView<CartTm> tblOrderCart;
 
     @FXML
     private TextField txtQty;
 
+    private ObservableList<CartTm> cartList = FXCollections.observableArrayList();
     public void initialize() {
+        setCellValueFactory();
         loadNextOrderId();
         setDate();
         getCustomerIds();
         getItemCodes();
+    }
+
+    private void setCellValueFactory() {
+        colItemCode.setCellValueFactory(new PropertyValueFactory<>("code"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        colAction.setCellValueFactory(new PropertyValueFactory<>("btnRemove"));
     }
 
     private void getItemCodes() {
@@ -154,6 +167,18 @@ public class PlaceOrderFormController {
 
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
+        String code = cmbItemCode.getValue();
+        String description = lblDescription.getText();
+        int qty = Integer.parseInt(txtQty.getText());
+        double unitPrice = Double.parseDouble(lblUnitPrice.getText());
+        double total = qty * unitPrice;
+        JFXButton btnRemove = new JFXButton("remove");
+
+        CartTm cartTm = new CartTm(code, description, qty, unitPrice, total, btnRemove);
+
+        cartList.add(cartTm);
+
+        tblOrderCart.setItems(cartList);
 
     }
 
@@ -193,7 +218,17 @@ public class PlaceOrderFormController {
 
     @FXML
     void cmbItemOnAction(ActionEvent event) {
-
+        String code = cmbItemCode.getValue();
+        try {
+            Item item = ItemRepo.searchByCode(code);
+            if(item != null) {
+                lblDescription.setText(item.getDescription());
+                lblUnitPrice.setText(String.valueOf(item.getUnitPrice()));
+                lblQtyOnHand.setText(String.valueOf(item.getQtyOnHand()));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
