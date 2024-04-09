@@ -36,5 +36,7 @@ create table order_detail(
                                  on delete cascade on update cascade
 );
 
+INSERT INTO customers VALUES ('C001', 'Gunapala', 'Galle', '078656565');
+
 INSERT INTO orders VALUES ('O1', 'C001', '2024-04-19');
 INSERT INTO orders VALUES ('O2', 'C001', '2024-04-20');
