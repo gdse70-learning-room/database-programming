@@ -83,6 +83,8 @@ public class CustomerFormController {
             tmList.add(customerTm);
         }
         tblCustomer.setItems(tmList);
+        CustomerTm selectedItem = tblCustomer.getSelectionModel().getSelectedItem();
+        System.out.println("selectedItem = " + selectedItem);
     }
 
     private List<Customer> getAllCustomers() {
