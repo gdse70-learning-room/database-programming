@@ -42,3 +42,4 @@ INSERT INTO orders VALUES ('O1', 'C001', '2024-04-19');
 INSERT INTO orders VALUES ('O2', 'C001', '2024-04-20');
 
 SELECT * FROM orders;
+

@@ -12,9 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.supermarket.repository.OrderRepo;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class PlaceOrderFormController {
 
@@ -81,7 +84,25 @@ public class PlaceOrderFormController {
     }
 
     private void loadNextOrderId() {
+        try {
+            String currentId = OrderRepo.currentId();
+            String nextId = nextId(currentId);
 
+            lblOrderId.setText(nextId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String nextId(String currentId) {
+        if(currentId != null) {
+            String[] split = currentId.split("2");
+            System.out.println("Arrays.toString(split) = " + Arrays.toString(split));
+//            int id = Integer.parseInt(split[0]);
+//            return "O" + ++id;
+
+        }
+        return "O1";
     }
 
     private void setDate() {
