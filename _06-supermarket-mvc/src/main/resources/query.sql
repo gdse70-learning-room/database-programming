@@ -3,7 +3,7 @@ create database if not exists kade;
 
 use kade;
 
-create table customer(
+create table customers(
                          id varchar(35) primary key ,
                          name varchar(155) not null,
                          address text not null,
