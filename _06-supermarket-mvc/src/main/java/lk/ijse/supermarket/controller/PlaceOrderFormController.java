@@ -15,7 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.supermarket.model.Customer;
+import lk.ijse.supermarket.model.Item;
 import lk.ijse.supermarket.repository.CustomerRepo;
+import lk.ijse.supermarket.repository.ItemRepo;
 import lk.ijse.supermarket.repository.OrderRepo;
 
 import java.io.IOException;
@@ -33,7 +35,7 @@ public class PlaceOrderFormController {
     private JFXComboBox<String> cmbCustomerId;
 
     @FXML
-    private JFXComboBox<?> cmbItemCode;
+    private JFXComboBox<String> cmbItemCode;
 
     @FXML
     private TableColumn<?, ?> colAction;
@@ -87,6 +89,22 @@ public class PlaceOrderFormController {
         loadNextOrderId();
         setDate();
         getCustomerIds();
+        getItemCodes();
+    }
+
+    private void getItemCodes() {
+        ObservableList<String> obList = FXCollections.observableArrayList();
+        try {
+            List<String> codeList = ItemRepo.getCodes();
+            for(String code : codeList) {
+                obList.add(code);
+            }
+
+            cmbItemCode.setItems(obList);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void getCustomerIds() {

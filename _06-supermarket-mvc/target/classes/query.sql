@@ -43,3 +43,16 @@ INSERT INTO orders VALUES ('O2', 'C001', '2024-04-20');
 
 SELECT * FROM orders;
 
+# Insert 10 items
+INSERT INTO items (code, description, unit_price, qty_on_hand)
+VALUES
+    ('I001', 'Apple', 1.99, 100),
+    ('I002', 'Banana', 0.49, 150),
+    ('I003', 'Milk (1L)', 2.99, 80),
+    ('I004', 'Bread', 2.49, 120),
+    ('I005', 'Eggs (dozen)', 3.99, 50),
+    ('I006', 'Potatoes (1kg)', 1.79, 70),
+    ('I007', 'Chicken Breast (1kg)', 6.99, 40),
+    ('I008', 'Rice (1kg)', 2.29, 90),
+    ('I009', 'Pasta (500g)', 1.49, 60),
+    ('I010', 'Tomato', 0.79, 110);
