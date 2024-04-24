@@ -13,16 +13,18 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import lk.ijse.supermarket.model.Customer;
-import lk.ijse.supermarket.model.Item;
+import lk.ijse.supermarket.model.*;
 import lk.ijse.supermarket.model.tm.CartTm;
 import lk.ijse.supermarket.repository.CustomerRepo;
 import lk.ijse.supermarket.repository.ItemRepo;
 import lk.ijse.supermarket.repository.OrderRepo;
+import lk.ijse.supermarket.repository.PlaceOrderRepo;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -240,7 +242,36 @@ public class PlaceOrderFormController {
 
     @FXML
     void btnPlaceOrderOnAction(ActionEvent event) {
+        String orderId = lblOrderId.getText();
+        String cusId = cmbCustomerId.getValue();
+        Date date = Date.valueOf(LocalDate.now());
 
+        var order = new Order(orderId, cusId, date);
+
+        List<OrderDetail> odList = new ArrayList<>();
+        for (int i = 0; i < tblOrderCart.getItems().size(); i++) {
+            CartTm tm = cartList.get(i);
+
+            OrderDetail od = new OrderDetail(
+                    orderId,
+                    tm.getCode(),
+                    tm.getQty(),
+                    tm.getUnitPrice()
+            );
+            odList.add(od);
+        }
+
+        PlaceOrder po = new PlaceOrder(order, odList);
+        try {
+            boolean isPlaced = PlaceOrderRepo.placeOrder(po);
+            if(isPlaced) {
+                new Alert(Alert.AlertType.CONFIRMATION, "order placed!").show();
+            } else {
+                new Alert(Alert.AlertType.WARNING, "order not placed!").show();
+            }
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+        }
     }
 
     @FXML
